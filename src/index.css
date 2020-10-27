@@ -1,13 +1,36 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#pagepiling {
+  text-align: center;
+}
+#pagepiling .section {
+  color: white;
+  font-size: 5em;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+#pp-nav li .active span,
+.pp-slidesNav .active span {
+  background: rgb(255, 255, 255) !important;
+}
+.sec1 {
+  background: url("https://images.pexels.com/photos/1439227/pexels-photo-1439227.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-size: cover;
+}
+.sec2 {
+  background: url("https://images.pexels.com/photos/54300/pexels-photo-54300.jpeg?cs=srgb&dl=pexels-nita-54300.jpg&fm=jpg");
+  background-size: cover;
+}
+.sec3 {
+  background: url("https://images.pexels.com/photos/97494/pexels-photo-97494.jpeg?cs=srgb&dl=pexels-francesco-ungaro-97494.jpg&fm=jpg");
+  background-size: cover;
+}
+.sec4 {
+  background: url("https://images.pexels.com/photos/822474/pexels-photo-822474.jpeg?cs=srgb&dl=pexels-bianca-marolla-822474.jpg&fm=jpg");
+  background-size: cover;
+}
+.sec5 {
+  background: url("https://images.pexels.com/photos/3675083/pexels-photo-3675083.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-size: cover;
 }

@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import $ from 'jquery';
+import './jquery.pagepiling';
+import './jquery.pagepiling.css';
+import './index.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class Main extends Component {
+    componentDidMount(){
+        $(document).ready(function() {
+            $('#pagepiling').pagepiling({
+                navigation: {
+                    'textColor': '#fff',
+                    'bulletsColor': '#fff',
+                    'position': 'right',
+                    'tooltips': ['Water', 'Air','Fire', 'Soil', 'Sky']
+                }
+            })
+        })
+    }
+    render() {
+        return (
+            <div id="pagepiling">
+                <div class="section sec1"><h1>Water</h1></div>
+                <div class="section sec2"><h1>Air</h1></div>
+                <div class="section sec3"><h1>Fire</h1></div>
+                <div class="section sec4"><h1>Soil</h1></div>
+                <div class="section sec5"><h1>Sky</h1></div>
+            </div>
+        )
+    }
 }
-
-export default App;
