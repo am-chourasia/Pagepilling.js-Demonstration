@@ -6,10 +6,9 @@
  *
  * Copyright (C) 2016 alvarotrigo.com - A project by Alvaro Trigo
  */
-import jQuery  from 'jquery';
+import jQuery from 'jquery';
 
-(function ($, document, window, undefined) {
-    'use strict';
+(function ($, document, window) {
 
     $.fn.pagepiling = function (custom) {
         var PP = $.fn.pagepiling;
@@ -254,9 +253,9 @@ import jQuery  from 'jquery';
                 v.animated = true;
             }
 
-            // if(typeof v.anchorLink !== 'undefined'){
-            //     setURLHash(v.anchorLink, v.sectionIndex);
-            // }
+            if(typeof v.anchorLink !== 'undefined'){
+                setURLHash(v.anchorLink, v.sectionIndex);
+            }
 
             v.destination.addClass('active').siblings().removeClass('active');
 
@@ -269,7 +268,7 @@ import jQuery  from 'jquery';
 
                 if(!options.css3){
                     v.sectionsToMove.each(function(index){
-                        if(index != v.activeSection.index('.pp-section')){
+                        if(index !== v.activeSection.index('.pp-section')){
                             $(this).css(getScrollProp(v.scrolling));
                         }
                     });
@@ -345,16 +344,18 @@ import jQuery  from 'jquery';
             var sectionToMove;
 
             if(v.yMovement === 'down'){
-                sectionToMove = $('.pp-section').map(function(index){
+                sectionToMove = $('.pp-section').map((index)=>{
                     if (index < v.destination.index('.pp-section')){
                         return $(this);
                     }
+                    return null;
                 });
             }else{
-                sectionToMove = $('.pp-section').map(function(index){
+                sectionToMove = $('.pp-section').map((index)=>{
                     if (index > v.destination.index('.pp-section')){
                         return $(this);
                     }
+                    return null;
                 });
             }
 
@@ -386,27 +387,27 @@ import jQuery  from 'jquery';
         /**
         * Scrolls the site without anymations (usually used in the background without the user noticing it)
         */
-        function silentScroll(section, offset){
-            if (options.css3) {
-                transformContainer(section, getTranslate3d(), false);
-            }
-            else{
-                section.css(getScrollProp(offset));
-            }
-        }
+        // function silentScroll(section, offset){
+        //     if (options.css3) {
+        //         transformContainer(section, getTranslate3d(), false);
+        //     }
+        //     else{
+        //         section.css(getScrollProp(offset));
+        //     }
+        // }
 
         /**
         * Sets the URL hash for a section with slides
         */
-        // function setURLHash(anchorLink, sectionIndex){
-        //     if(options.anchors.length){
-        //         location.hash = anchorLink;
+        function setURLHash(anchorLink, sectionIndex){
+            if(options.anchors.length){
+                window.location.hash = anchorLink;
 
-        //         setBodyClass(location.hash);
-        //     }else{
-        //         setBodyClass(String(sectionIndex));
-        //     }
-        // }
+                setBodyClass(window.location.hash);
+            }else{
+                setBodyClass(String(sectionIndex));
+            }
+        }
 
         /**
         * Sets a class for the body of the page depending on the active section / slide
@@ -640,7 +641,7 @@ import jQuery  from 'jquery';
             var check;
             var scrollSection;
 
-            if(type == 'down'){
+            if(type === 'down'){
                 check = 'bottom';
                 scrollSection = PP.moveSectionDown;
             }else{
@@ -757,7 +758,7 @@ import jQuery  from 'jquery';
         * https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
         */
         function getEventsPage(e){
-            var events = new Array();
+            var events = [];
 
             events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
             events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
@@ -771,7 +772,7 @@ import jQuery  from 'jquery';
         */
         function isReallyTouch(e){
             //if is not IE   ||  IE is detecting `touch` or `pen`
-            return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
+            return typeof e.pointerType === 'undefined' || e.pointerType !== 'mouse';
         }
 
         /**
@@ -846,7 +847,7 @@ import jQuery  from 'jquery';
             if (hop < options.normalScrollElementTouchThreshold &&
                 parent.is(options.normalScrollElements) ) {
                 return true;
-            } else if (hop == options.normalScrollElementTouchThreshold) {
+            } else if (hop === options.normalScrollElementTouchThreshold) {
                 return false;
             } else {
                 return checkParentForNormalScrollElement(parent, ++hop);
